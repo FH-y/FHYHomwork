@@ -11,10 +11,13 @@ public class MainFramework extends JFrame {
     private JButton rank_button;
     private JTextField step;
     private JTextField time;
+    private PictureCanvas canvas;
+
 
     public MainFramework(){
         Frame_init();
         upComponent();
+        AddPictureCanvas();
 
     }
 
@@ -67,6 +70,13 @@ public class MainFramework extends JFrame {
         panel.add(StatusPanel,BorderLayout.WEST);
 
         this.add(panel,BorderLayout.NORTH);
+    }
+
+    private void AddPictureCanvas(){
+        JPanel panel = new JPanel();
+        canvas = new PictureCanvas();
+        panel.add(canvas);
+        this.add(panel,BorderLayout.CENTER);
     }
 
 }

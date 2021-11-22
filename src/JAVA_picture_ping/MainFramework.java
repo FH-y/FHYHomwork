@@ -3,13 +3,16 @@ package JAVA_picture_ping;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 
 public class MainFramework extends JFrame {
 
     private JButton start_button;
     private JButton tip_button;
     private JButton rank_button;
-    private JTextField step;
+    public static JTextField step;
     private JTextField time;
     private PictureCanvas canvas;
 
@@ -18,6 +21,7 @@ public class MainFramework extends JFrame {
         Frame_init();
         upComponent();
         AddPictureCanvas();
+        addActionListener();
 
     }
 
@@ -74,9 +78,30 @@ public class MainFramework extends JFrame {
 
     private void AddPictureCanvas(){
         JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
         canvas = new PictureCanvas();
-        panel.add(canvas);
+        panel.add(canvas,BorderLayout.CENTER);
         this.add(panel,BorderLayout.CENTER);
     }
+
+    private void addActionListener(){
+        start_button.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                PictureCanvas.STEP_NUM = 0;
+                step.setText("步数："+PictureCanvas.STEP_NUM);
+                canvas.start();
+            }
+        });
+        tip_button.addActionListener(new ActionListener() {
+            String filename = "pic/0.jpg";
+            ImageIcon icon = new ImageIcon(filename);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,icon);
+            }
+        });
+    }
+
 
 }

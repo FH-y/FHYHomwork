@@ -13,16 +13,17 @@ public class Const {
 
 
 
-    public static int ROW = 4;
+    public static int ROW = 3;
     public static int COL = 4;
     public static int MAIN_F_W = 600;
-    public static int MAIN_F_H = 450;
-    public static int MAIN_F_X = 400;
-    public static int MAIN_F_Y = 150;
+    public static int MAIN_F_H = 550;
+    public static int MAIN_F_X = 150;
+    public static int MAIN_F_Y = 10;
     public static int GRID_R = 1;
     public static int GRID_C = 2;
     public static int CELL_W = 150;
     public static int CELL_H = 150;
 
+    public static boolean KEY_STATUS = false;
 
 }

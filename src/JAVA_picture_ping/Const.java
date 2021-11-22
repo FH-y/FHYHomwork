@@ -8,10 +8,21 @@ public class Const {
     public static String RANK = "排行榜";
     public static String STEP = "步数:  ";
     public static String TIME = "时间: ";
+    public static String RANK_BUTTON = "排行榜";
+    public static String STATUS_PANEL = "步长和时间";
 
 
 
     public static int ROW = 4;
     public static int COL = 4;
+    public static int MAIN_F_W = 600;
+    public static int MAIN_F_H = 450;
+    public static int MAIN_F_X = 400;
+    public static int MAIN_F_Y = 150;
+    public static int GRID_R = 1;
+    public static int GRID_C = 2;
+    public static int CELL_W = 150;
+    public static int CELL_H = 150;
+
 
 }

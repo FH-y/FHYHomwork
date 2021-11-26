@@ -5,17 +5,23 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class MainFramework extends JFrame {
+public class MainFramework extends JFrame implements KeyListener{
 
     private JButton start_button;
     private JButton tip_button;
     private JButton rank_button;
+
     public static JTextField step;
     private JTextField time;
     private PictureCanvas canvas;
 
+    //时间
+    public static int minute = 0;
+    public static int second = 0;
+    Timer timer = new Timer(1000, new TimerListener());
 
     public MainFramework(){
         Frame_init();
@@ -36,8 +42,9 @@ public class MainFramework extends JFrame {
     private void upComponent(){
 
         JPanel panel = new JPanel();
+        JPanel jpnTime = new JPanel();//时间记录
         panel.setLayout(new GridLayout(Const.GRID_R,Const.GRID_C));
-        //创建5个区域，从左到右，为开始游戏，提示，排行榜;   步数，时间
+        //创建5个区域，从左到右，为开始游戏，提示，排行榜;  步数，时间
 
         //左边的三个按钮
         JPanel ButtonPanel = new JPanel();
@@ -51,6 +58,7 @@ public class MainFramework extends JFrame {
         ButtonPanel.add(start_button);
         ButtonPanel.add(tip_button);
         ButtonPanel.add(rank_button);
+
 
         panel.add(ButtonPanel,BorderLayout.EAST);
 
@@ -85,14 +93,28 @@ public class MainFramework extends JFrame {
     }
 
     private void addActionListener(){
+
         start_button.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
+                end_time();
+                start_time();
                 PictureCanvas.STEP_NUM = 0;
+                minute = 0;
+                second = 0;
                 step.setText("步数："+PictureCanvas.STEP_NUM);
+                time.setText(minute+" 分 "+second+" 秒");
                 canvas.start();
             }
         });
+
+        rank_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         tip_button.addActionListener(new ActionListener() {
             String filename = "pic/0.jpg";
             ImageIcon icon = new ImageIcon(filename);
@@ -103,5 +125,38 @@ public class MainFramework extends JFrame {
         });
     }
 
+    private class TimerListener implements ActionListener {
+        @Override public void actionPerformed(ActionEvent e) {
+            second++;
+            if(second == 60){
+                minute++;
+                second = 0;
+            }
+            time.setText(minute+" 分 "+second+" 秒");
+        }
+    }
+
+    public void start_time(){
+        timer.start();
+    }
+    public void end_time(){
+        timer.stop();
+    }
+
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 
 }

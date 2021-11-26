@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 public class PictureCanvas extends JPanel implements MouseListener {
 
     public static int STEP_NUM; //  步数
-    private Cell[] cell;
+    public static Cell[] cell;
     private boolean hasActionListener = false;//判断是否添加了监听器
     private Rectangle nullCell; //创建一个空方格
 
@@ -30,7 +30,6 @@ public class PictureCanvas extends JPanel implements MouseListener {
 
         this.remove(cell[11]); //移除最后一个，替换成空的方格子
         nullCell = new Rectangle(cell[10].getBounds().x + Const.CELL_W,cell[10].getBounds().y,Const.CELL_H,Const.CELL_W);
-
     }
     public void start(){
         //如果要是没有给小方格添加监听,就添加监听
@@ -129,7 +128,7 @@ public class PictureCanvas extends JPanel implements MouseListener {
 
         //判断当前游戏是否完成，若完成，给玩家一个提示
         if (this.isFinish()) { //弹出一个消息提示
-            JOptionPane.showMessageDialog(this, "恭喜完成拼图 " + STEP_NUM);
+            JOptionPane.showMessageDialog(this, "恭喜完成拼图 |步数:" + STEP_NUM+ "|时间 :"+MainFramework.minute+"分"+MainFramework.second +"秒｜");
             //撤销每一个小方格上鼠标点击监听,让鼠标点击小方格不在起作用
             for (int i = 0; i < 11; i++) {
                 cell[i].removeMouseListener(this);

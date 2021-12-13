@@ -7,8 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
-public class MainFramework extends JFrame implements KeyListener{
+public class MainFramework extends JFrame {
 
     private JButton start_button;
     private JButton tip_button;
@@ -18,12 +19,15 @@ public class MainFramework extends JFrame implements KeyListener{
     private JTextField time;
     private PictureCanvas canvas;
 
+    public static rank_file file=new rank_file();
+
     //时间
     public static int minute = 0;
     public static int second = 0;
     Timer timer = new Timer(1000, new TimerListener());
 
-    public MainFramework(){
+    public MainFramework() throws IOException {
+        file.input();
         Frame_init();
         upComponent();
         AddPictureCanvas();
@@ -111,7 +115,12 @@ public class MainFramework extends JFrame implements KeyListener{
         rank_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                StringBuffer str=new StringBuffer();
+                for(int i = 0; i< Math.min(3,file.n); i++)
+                    str.append("第"+(i+1)+"名用时:"+file.m[i]+"秒"+'\n');
+                for(int i=file.n;i<3;i++)
+                    str.append("第"+(i+1)+"名用时:（无）"+'\n');
+                JOptionPane.showMessageDialog(null,str);
             }
         });
 
@@ -140,23 +149,8 @@ public class MainFramework extends JFrame implements KeyListener{
         timer.start();
     }
     public void end_time(){
+
         timer.stop();
-    }
-
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
     }
 
 }

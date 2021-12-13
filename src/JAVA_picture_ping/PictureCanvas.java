@@ -129,6 +129,7 @@ public class PictureCanvas extends JPanel implements MouseListener {
         //判断当前游戏是否完成，若完成，给玩家一个提示
         if (this.isFinish()) { //弹出一个消息提示
             JOptionPane.showMessageDialog(this, "恭喜完成拼图 |步数:" + STEP_NUM+ "|时间 :"+MainFramework.minute+"分"+MainFramework.second +"秒｜");
+            MainFramework.file.output(MainFramework.minute*60+MainFramework.second);
             //撤销每一个小方格上鼠标点击监听,让鼠标点击小方格不在起作用
             for (int i = 0; i < 11; i++) {
                 cell[i].removeMouseListener(this);
